@@ -3,137 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAR - Just a Remedy | Redirecting...</title>
-    <!-- Meta refresh for automatic redirection after 5 seconds (increased for better user experience) -->
-    <!-- Replace 'https://www.your-dry-fruits-business-url.com' with the actual URL you want to redirect to -->
-    <meta http-equiv="refresh" content="5;url=https://www.your-dry-fruits-business-url.com">
-    <!-- Google Fonts - Inter for a modern, clean look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>JAR - Just a Remedy</title>
+    <!-- Lottie Files Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
-        /* Custom styles for the page */
+        :root {
+            --primary: #4f46e5;
+            --secondary: #7c3aed;
+            --accent: #a78bfa;
+            --text: #e2e8f0;
+            --bg: #1e1b4b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #fdfaf6 0%, #fae8d8 100%); /* Soft gradient background */
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden; /* Prevent scrollbars from subtle animations */
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 40px; /* Increased padding */
-            border-radius: 20px; /* More rounded corners */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-            max-width: 550px; /* Slightly wider container */
-            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px; /* Increased gap between elements */
-            animation: fadeInScale 0.7s ease-out forwards; /* Fade in animation */
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
         }
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(30, 27, 75, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
         h1 {
-            font-size: 2.8rem; /* Larger heading */
-            font-weight: 700; /* Bolder */
-            color: #6A3E2E; /* Richer brown for branding */
-            margin-bottom: 15px;
-            letter-spacing: -0.02em; /* Slightly tighter letter spacing */
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
         }
+
         p {
-            font-size: 1.2rem; /* Slightly larger text */
-            line-height: 1.7;
-            color: #4A4A4A; /* Darker grey for better contrast */
-        }
-        .lottie-container {
-            margin-top: 25px;
-            margin-bottom: 25px;
-        }
-        /* Style for the manual redirect button */
-        .redirect-button {
-            background-color: #A0522D; /* Sienna */
-            color: white;
-            padding: 14px 30px; /* Larger padding */
-            border-radius: 10px; /* More rounded button */
-            text-decoration: none;
-            font-weight: 600;
             font-size: 1.1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--accent);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 1s linear;
+        }
+
+        .btn {
             display: inline-block;
-            margin-top: 25px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Soft shadow */
-        }
-        .redirect-button:hover {
-            background-color: #8B4513; /* Darker SaddleBrown */
-            transform: translateY(-3px) scale(1.02); /* Lift and slightly enlarge on hover */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
-        }
-        .countdown {
-            font-size: 1.5rem;
+            padding: 12px 30px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
             font-weight: 600;
-            color: #A0522D; /* Sienna color for countdown */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
             margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .lottie-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .logo-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .lottie-container {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .timer {
+                font-size: 1.5rem;
+            }
+
+            .lottie-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .logo-img {
+                width: 70px;
+                height: 70px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to JAR - Just a Remedy!</h1>
-        <p>Your journey to wholesome goodness begins now.</p>
-        <p>You will be redirected to our dry fruits store in <span id="countdown-timer" class="countdown">5</span> seconds.</p>
-
+        <div class="logo-container">
+            <!-- JAR Logo -->
+            <img class="logo-img" src="https://i.postimg.cc/ry1j68hX/jar.jpg" alt="JAR">
+            <div class="logo-text">just a remedy</div>
+        </div>
+        
+        <h1>JAR - Just a Remedy</h1>
+        <p>You are being redirected to our application. Please wait...</p>
+        
         <!-- Lottie Animation -->
         <div class="lottie-container">
-            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
-            <dotlottie-wc src="https://lottie.host/3f76030c-86d3-4132-a925-5f479c8e6bfa/Ht0wp2RglG.lottie" style="width: 300px; height: 300px;" speed="1" autoplay loop></dotlottie-wc>
+            <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_poqmycwy.json" background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
-
-        <!-- Manual Redirect Button -->
-        <a href="https://www.your-dry-fruits-business-url.com" class="redirect-button">
-            Explore Our Dry Fruits
-        </a>
+        
+        <div class="timer" id="timer">5</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <a href="https://jolly-phebe-seeutech-5259d95c.koyeb.app/menu" class="btn">Go Now</a>
     </div>
 
     <script>
-        // JavaScript for countdown timer and redirection
-        const redirectUrl = 'https://www.your-dry-fruits-business-url.com'; // Replace with your actual URL
-        let timeLeft = 5; // Initial countdown time in seconds
-        const countdownElement = document.getElementById('countdown-timer');
-
-        function updateCountdown() {
-            if (countdownElement) {
-                countdownElement.textContent = timeLeft;
-            }
-
+        const targetUrl = "https://jolly-phebe-seeutech-5259d95c.koyeb.app/menu";
+        let timeLeft = 5;
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        
+        // Update timer and progress bar every second
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            progressBar.style.width = `${(5 - timeLeft) * 20}%`;
+            
             if (timeLeft <= 0) {
-                window.location.href = redirectUrl; // Redirect when countdown finishes
-            } else {
-                timeLeft--;
-                setTimeout(updateCountdown, 1000); // Update every second
+                clearInterval(countdown);
+                window.location.href = targetUrl;
             }
-        }
-
-        // Start the countdown when the page loads
-        window.onload = function() {
-            updateCountdown();
-            console.log("Attempting to redirect to: " + redirectUrl + " in " + (timeLeft + 1) + " seconds.");
-        };
+        }, 1000);
+        
+        // Smooth animation for progress bar
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 0.2;
+            progressBar.style.width = `${progress}%`;
+            
+            if (progress >= 100) {
+                clearInterval(interval);
+            }
+        }, 10);
     </script>
 </body>
 </html>
+
